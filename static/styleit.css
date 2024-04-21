@@ -1,0 +1,44 @@
+
+body {
+    background-image: url("/static/bg.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 300px; /* Adjust the width as needed */
+}
+label {
+    width: 150px; /* Adjust the width as needed */
+    text-align: justify;
+    margin-right: 10px;
+    font-weight: bold;
+}
+input {
+    width: 100px; /* Adjust the width as needed */
+    padding: 1px;
+}
+
+p {
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+select {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button {
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    font-size: 16px;
+}

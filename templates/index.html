@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Placement Prediction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
+  <link rel="stylesheet" type='text/css' href="{{url_for('static', filename='styleit.css')}}">
+</head>
+
+<body>
+ <div class="login" align="center">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+	<h1 style="font-family: 'Pacifico', cursive;">Placement Prediction</h1>
+    <form action="{{ url_for('predict')}}"method="post"></form>
+     <!-- Main Input For Receiving Query to our ML -->
+        <p>
+            <label for="exc">Enter SSC Marks:</label>
+                <input type="number" id="exc" name="exc" step="0.01" min="0" max="100" required>
+        </p>
+
+        <p>
+            <label for="exc">Enter HSC Marks:</label>
+                <input type="number" id="exc" name="exc" step="0.01" min="0" max="100" required>
+        </p>
+
+        <p>
+            <label for="exc">Enter CGPA:</label>
+                <input type="number" id="exc" name="exc" step="0.01" min="0" max="10" required>
+        </p>
+
+        <p>
+            <label for="exc">Project counts:</label>
+                <input type="number" id="exc" name="exc" step="1" min="0" required>  
+        </p>
+
+        <p>
+            <label for="exc">Internship Count:</label>
+                <input type="number" id="exc" name="exc" step="1" min="0" required>
+        </p>
+            
+        <p>
+        <label for="exc">Aptitude Test Score:</label>
+                <input type="number" id="exc" name="exc" step="0.01" min="0" max="100" required>
+        </p>
+        <p>
+                <label for="exc">Enter Workshop Attended:</label>
+                <input type="number" id="exc" name="exc" step="1" min="0" required>
+        </p>
+
+        <p> Involved in ExtracurricularActivities?:
+            <select name="EActivities" id="EActivities" required>
+                <option value=""></option>
+                <option value="1">YES</option>
+                <option value="0">NO</option>
+            </select>
+         </p>
+
+         <p> Taken Placement Training?:
+            <select name="PTraining" id="PTraining" required>
+                <option value=""></option>
+                <option value="1">YES</option>
+                <option value="0">NO</option>
+            </select>
+         </p>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <!--{% if input_values %}
+    <p>Inputs: {{ input_values }}</p>
+    {% endif %}
+   {{ prediction_text }}-->
+   {% if input_values %}
+        <p>Inputs: {{ input_values }}</p>
+    {% endif %}
+    {% if prediction_text %}
+        <p>{{ prediction_text }}</p>
+    {% endif %}
+    {% if not input_values and not prediction_text %}
+        <p>No input values passed</p>
+    {% endif %}
+
+ </div>
+
+
+</body>
+</html>
