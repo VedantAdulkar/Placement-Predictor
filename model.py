@@ -17,6 +17,8 @@ df['PlacementStatus'] = df['PlacementStatus'].apply(lambda x: 1 if x=='Placed' e
 
 target_label = df['PlacementStatus'].values.tolist()
 features = df.drop(['StudentID', 'PlacementStatus'],axis = 1).values.tolist()
+feat=df.drop(['StudentID', 'PlacementStatus'],axis = 1)
+print(feat.shape)
 
 X_train, X_test, y_train, y_test = train_test_split(features, target_label, test_size=0.2, random_state=42)
 

@@ -20,11 +20,11 @@ label {
     font-weight: bold;
 }
 input {
-    width: 100px; /* Adjust the width as needed */
+    width: 125px; /* Adjust the width as needed */
     padding: 1px;
 }
 
-p {
+div {
     font-family: 'Indie Flower', cursive;
     font-weight: bold;
 }
@@ -41,4 +41,21 @@ button {
     font-family: 'Indie Flower', cursive;
     font-weight: bold;
     font-size: 16px;
+}
+
+#container{
+    
+    text-align: center;
+}
+
+#SoftSkillsRating{
+    width: 125px;
+}
+
+#project_count{
+    width: 150px;
+}
+
+#aptitude_score{
+    width: 125px;
 }

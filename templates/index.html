@@ -22,59 +22,60 @@
     <br>
     <br>
 	<h1 style="font-family: 'Pacifico', cursive;">Placement Prediction</h1>
-    <form action="{{ url_for('predict')}}"method="post"></form>
+    <form action="/predict"method="POST">
      <!-- Main Input For Receiving Query to our ML -->
-        <p>
-            <label for="exc">Enter SSC Marks:</label>
-                <input type="number" id="exc" name="exc" step="0.01" min="0" max="100" required>
-        </p>
+     <div>
+        <label for="ssc">Enter SSC Marks:</label>
+        <input type="number" id="ssc" name="ssc" placeholder="e.g. 86.45" step="0.01" min="0" max="100" required>
+    </div>
+    <div>
+        <label for="hsc">Enter HSC Marks:</label>
+        <input type="number" id="hsc" name="hsc" placeholder="e.g. 86.43" step="0.01" min="0" max="100" required>
+    </div>
+    <div>
+        <label for="cgpa">Enter CGPA:</label>
+        <input type="number" id="cgpa" name="cgpa" placeholder="(out of 10 e.g. 8.4)" step="0.01" min="0" max="10" required>
+    </div>
+    <div>
+        <label for="project_count">Project Count:</label>
+        <input type="number" id="project_count" name="project_count" placeholder="e.g. 1,2.." step="1" min="0" required>
+    </div>
 
-        <p>
-            <label for="exc">Enter HSC Marks:</label>
-                <input type="number" id="exc" name="exc" step="0.01" min="0" max="100" required>
-        </p>
+    <div>
+        <label for="SoftSkillsRating">Soft Skills Rating:</label>
+        <input type="number" id="SoftSkillsRating" name="SoftSkillsRating" placeholder="(out of 5 e.g. 4.8)" step="0.1" min="0" max="5" required>
+    </div>
 
-        <p>
-            <label for="exc">Enter CGPA:</label>
-                <input type="number" id="exc" name="exc" step="0.01" min="0" max="10" required>
-        </p>
-
-        <p>
-            <label for="exc">Project counts:</label>
-                <input type="number" id="exc" name="exc" step="1" min="0" required>  
-        </p>
-
-        <p>
-            <label for="exc">Internship Count:</label>
-                <input type="number" id="exc" name="exc" step="1" min="0" required>
-        </p>
-            
-        <p>
-        <label for="exc">Aptitude Test Score:</label>
-                <input type="number" id="exc" name="exc" step="0.01" min="0" max="100" required>
-        </p>
-        <p>
-                <label for="exc">Enter Workshop Attended:</label>
-                <input type="number" id="exc" name="exc" step="1" min="0" required>
-        </p>
-
-        <p> Involved in ExtracurricularActivities?:
-            <select name="EActivities" id="EActivities" required>
-                <option value=""></option>
-                <option value="1">YES</option>
-                <option value="0">NO</option>
-            </select>
-         </p>
-
-         <p> Taken Placement Training?:
-            <select name="PTraining" id="PTraining" required>
-                <option value=""></option>
-                <option value="1">YES</option>
-                <option value="0">NO</option>
-            </select>
-         </p>
-
+    <div>
+        <label for="internship_count">Internship Count:</label>
+        <input type="number" id="internship_count" name="internship_count" placeholder="e.g. 1,2.." step="1" min="0" required>
+    </div>
+    <div>
+        <label for="aptitude_score">Aptitude Test Score:</label>
+        <input type="number" id="aptitude_score" name="aptitude_score" placeholder="(out of 100 e.g. 64.8)" step="0.1" min="0" max="100" required>
+    </div>
+    <div>
+        <label for="workshop_attended">Workshop Attended:</label>
+        <input type="number" id="workshop_attended" name="workshop_attended" placeholder="e.g. 1,2.." step="1" min="0" required>
+    </div>
+    <div> Involved in Extracurricular Activities?:
+        <select name="EActivities" id="EActivities" required>
+            <option value=""></option>
+            <option value="1">YES</option>
+            <option value="0">NO</option>
+        </select>
+    </div>
+    <div> Taken Placement Training?:
+        <select name="PTraining" id="PTraining" required>
+            <option value=""></option>
+            <option value="1">YES</option>
+            <option value="0">NO</option>
+        </select>
+    </div>
+    <br>
+    <div id="container">
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </div>
     </form>
 
    <br>
