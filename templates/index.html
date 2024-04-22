@@ -22,50 +22,50 @@
     <br>
     <br>
 	<h1 style="font-family: 'Pacifico', cursive;">Placement Prediction</h1>
-    <form action="/predict"method="POST">
+    <form id="myform" action="/result"method="POST">
      <!-- Main Input For Receiving Query to our ML -->
      <div>
-        <label for="ssc">Enter SSC Marks:</label>
+        <label for="ssc">Enter SSC Marks :</label>
         <input type="number" id="ssc" name="ssc" placeholder="e.g. 86.45" step="0.01" min="0" max="100" required>
     </div>
     <div>
-        <label for="hsc">Enter HSC Marks:</label>
+        <label for="hsc">Enter HSC Marks :</label>
         <input type="number" id="hsc" name="hsc" placeholder="e.g. 86.43" step="0.01" min="0" max="100" required>
     </div>
     <div>
-        <label for="cgpa">Enter CGPA:</label>
+        <label for="cgpa">Enter CGPA :</label>
         <input type="number" id="cgpa" name="cgpa" placeholder="(out of 10 e.g. 8.4)" step="0.01" min="0" max="10" required>
     </div>
     <div>
-        <label for="project_count">Project Count:</label>
+        <label for="project_count">Project Count :</label>
         <input type="number" id="project_count" name="project_count" placeholder="e.g. 1,2.." step="1" min="0" required>
     </div>
 
     <div>
-        <label for="SoftSkillsRating">Soft Skills Rating:</label>
+        <label for="SoftSkillsRating">Soft Skills Rating :</label>
         <input type="number" id="SoftSkillsRating" name="SoftSkillsRating" placeholder="(out of 5 e.g. 4.8)" step="0.1" min="0" max="5" required>
     </div>
 
     <div>
-        <label for="internship_count">Internship Count:</label>
+        <label for="internship_count">Internship Count :</label>
         <input type="number" id="internship_count" name="internship_count" placeholder="e.g. 1,2.." step="1" min="0" required>
     </div>
     <div>
-        <label for="aptitude_score">Aptitude Test Score:</label>
+        <label for="aptitude_score">Aptitude Test Score :</label>
         <input type="number" id="aptitude_score" name="aptitude_score" placeholder="(out of 100 e.g. 64.8)" step="0.1" min="0" max="100" required>
     </div>
     <div>
-        <label for="workshop_attended">Workshop Attended:</label>
+        <label for="workshop_attended">Workshop Attended :</label>
         <input type="number" id="workshop_attended" name="workshop_attended" placeholder="e.g. 1,2.." step="1" min="0" required>
     </div>
-    <div> Involved in Extracurricular Activities?:
+    <div> Involved in Extracurricular Activities? :
         <select name="EActivities" id="EActivities" required>
             <option value=""></option>
             <option value="1">YES</option>
             <option value="0">NO</option>
         </select>
     </div>
-    <div> Taken Placement Training?:
+    <div> Taken Placement Training? :
         <select name="PTraining" id="PTraining" required>
             <option value=""></option>
             <option value="1">YES</option>
@@ -74,27 +74,15 @@
     </div>
     <br>
     <div id="container">
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        <button type="submit" id="submitbutton" class="btn btn-primary btn-block btn-large">Predict</button>
     </div>
-    </form>
-
-   <br>
-   <!--{% if input_values %}
-    <p>Inputs: {{ input_values }}</p>
-    {% endif %}
-   {{ prediction_text }}-->
-   {% if input_values %}
-        <p>Inputs: {{ input_values }}</p>
-    {% endif %}
-    {% if prediction_text %}
-        <p>{{ prediction_text }}</p>
-    {% endif %}
-    {% if not input_values and not prediction_text %}
-        <p>No input values passed</p>
-    {% endif %}
-
+    
+    <button type="button" id="clearButton" class="fixed-button" onclick="clearInputs()">Clear Inputs</button>
  </div>
+ 
+</form>
 
 
+<script type="text/javascript" src="{{url_for('static', filename='script1.js')}}"></script>
 </body>
 </html>

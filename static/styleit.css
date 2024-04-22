@@ -59,3 +59,52 @@ button {
 #aptitude_score{
     width: 125px;
 }
+
+.fixed-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.stamp-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .prediction-text {
+    margin-right: 10px; /* Adjust as needed */
+  }
+
+.stamp-container {
+    position: absolute;
+    top: 65%;
+    left: 57%;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust height as needed */
+    z-index: 1; 
+  }
+  
+  .stamp {
+    animation: enterAnimation 0.75s ease-in-out 1s forwards;
+    transform: scale(0.01) rotate(-45deg); /* Initial scale and rotation, adjust as needed */
+  }
+  
+  @keyframes enterAnimation {
+    0% {
+      opacity: 0;
+      transform: scale(3) rotate(-45deg); /* Large scale and rotation, adjust as needed */
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0); /* Final scale and rotation */
+    }
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

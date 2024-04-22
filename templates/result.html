@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Placement Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
+    <link rel="stylesheet" type='text/css' href="{{url_for('static', filename='styleit.css')}}">
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+	<h1 style="font-family: 'Pacifico', cursive; text-align: center;">Placement Prediction</h1>
+    <div class="login" align="center">
+        <!-- Render labels for input values -->
+    <div class="container">
+        <div>
+            <label for="ssc">SSC Marks:</label>
+            <label>{{ input_values[8] }}</label>
+        </div>
+        <div>
+            <label for="hsc">HSC Marks:</label>
+            <label>{{ input_values[9] }}</label>
+        </div>
+        <div>
+            <label for="cgpa">CGPA:</label>
+            <label>{{ input_values[0] }}</label>
+        </div>
+        <div>
+            <label for="project_count">Project Count:</label>
+            <label>{{ input_values[2] }}</label>
+        </div>
+        <div>
+            <label for="SoftSkillsRating">Soft Skills Rating:</label>
+            <label>{{ input_values[5] }}</label>
+        </div>
+        <div>
+            <label for="internship_count">Internship Count:</label>
+            <label>{{ input_values[1] }}</label>
+        </div>
+        <div>
+            <label for="aptitude_score">Aptitude Test Score:</label>
+            <label>{{ input_values[4] }}</label>
+        </div>
+        <div>
+            <label for="workshop_attended">Workshop Attended:</label>
+            <label>{{ input_values[3] }}</label>
+        </div>
+        <div>
+            <label for="EActivities">Involved in Extracurricular Activities?:</label>
+            <label>{{ 'YES' if input_values[6] == '1' else 'NO' }}</label>
+        </div>
+        <div>
+            <label for="PTraining">Taken Placement Training?:</label>
+            <label>{{ 'YES' if input_values[7] == '1' else 'NO' }}</label>
+        </div>
+
+        <div class="stamp-wrapper">
+            <p class="prediction-text">{{ prediction_text }}</p>
+            <div class="stamp-container">
+              <img src="{{ prediction_image }}" class="stamp" alt="Stamp">
+            </div>
+        </div>
+    
+    </div>      
+
+        <!-- Add a clear button -->
+        <form action="/" method="GET">
+            <button type="submit" class="fixed-button">Clear</button>
+        </form>
+    </div>
+</body>
+</html>
