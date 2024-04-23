@@ -22,12 +22,6 @@ print(feat.shape)
 
 X_train, X_test, y_train, y_test = train_test_split(features, target_label, test_size=0.2, random_state=42)
 
-# Convert data to PyTorch tensors
-#X_train_tensor = torch.FloatTensor(X_train)
-#y_train_tensor = torch.FloatTensor(y_train).view(-1, 1)  # Reshape y_train
-#X_test_tensor = torch.FloatTensor(X_test)
-#y_test_tensor = torch.FloatTensor(y_test).view(-1, 1)  # Reshape y_test
-
 model = RandomForestClassifier(random_state=42)
 model.fit(X_train, y_train)
 
