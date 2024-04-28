@@ -17,10 +17,10 @@ def result():
     prediction = model.predict(input_array.reshape(1, -1))
 
     if prediction == 1:
-        prediction_text = "You will get Placed..!!"
+        prediction_text = "You might get Placed..!!"
         prediction_image = "/static/place2.png"
     else:
-        prediction_text = "You won't get Placed..!!"
+        prediction_text = "You might not get Placed..!!"
         prediction_image = "/static/nplace2.png"   
 
     # Render the result page with input values as labels 

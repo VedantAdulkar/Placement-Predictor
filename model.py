@@ -1,12 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import pickle
-import torch
-import numpy as np
-import sklearn
 
 df = pd.read_csv('C:/Users/Vedant/Desktop/app/placedata.csv')
 
