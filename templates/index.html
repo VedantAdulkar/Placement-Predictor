@@ -1,88 +1,168 @@
 <!DOCTYPE html>
-<html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Placement Prediction</title>
+  <title>ML Portfolio | Placement Predictor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" type='text/css' href="{{url_for('static', filename='styleit.css')}}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
- <div class="login" align="center">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-	<h1 style="font-family: 'Pacifico', cursive;">Placement Prediction</h1>
-    <form id="myform" action="/result"method="POST">
-     <!-- Main Input For Receiving Query to our ML -->
-     <div>
-        <label for="ssc">Enter SSC Marks :</label>
-        <input type="number" id="ssc" name="ssc" placeholder="e.g. 86.45" step="0.01" min="0" max="100" required>
+<body class="dashboard-body">
+  <nav class="navbar">
+    <div class="nav-brand">Data Science Portfolio</div>
+    <div class="nav-links">
+      <a href="#" class="active">Placement Predictor Model</a>
     </div>
-    <div>
-        <label for="hsc">Enter HSC Marks :</label>
-        <input type="number" id="hsc" name="hsc" placeholder="e.g. 86.43" step="0.01" min="0" max="100" required>
-    </div>
-    <div>
-        <label for="cgpa">Enter CGPA :</label>
-        <input type="number" id="cgpa" name="cgpa" placeholder="(out of 10 e.g. 8.4)" step="0.01" min="0" max="10" required>
-    </div>
-    <div>
-        <label for="project_count">Project Count :</label>
-        <input type="number" id="project_count" name="project_count" placeholder="e.g. 1,2.." step="1" min="0" required>
-    </div>
+  </nav>
 
-    <div>
-        <label for="SoftSkillsRating">Soft Skills Rating :</label>
-        <input type="number" id="SoftSkillsRating" name="SoftSkillsRating" placeholder="(out of 5 e.g. 4.8)" step="0.1" min="0" max="5" required>
-    </div>
+  <div class="dashboard-container">
+    <header class="header">
+      <h1>Random Forest Placement Predictor</h1>
+      <p class="subtitle">An interactive machine learning dashboard demonstrating predictive modeling on student academic and extracurricular data.</p>
+    </header>
 
-    <div>
-        <label for="internship_count">Internship Count :</label>
-        <input type="number" id="internship_count" name="internship_count" placeholder="e.g. 1,2.." step="1" min="0" required>
+    <div class="grid-2col">
+      <!-- Left Column: Model Insights -->
+      <div class="card insights-card">
+        <h2>Model Insights: Feature Importance</h2>
+        <p class="card-desc">The chart below illustrates which factors the Random Forest model weighs most heavily when predicting a student's placement probability.</p>
+        
+        <div class="chart-container" style="position: relative; height:400px; width:100%">
+          <canvas id="featureChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Predictor -->
+      <div class="card form-card">
+        <h2>Test the Model</h2>
+        <p class="card-desc">Enter custom metrics below to see a live probability prediction.</p>
+        
+        <form id="prediction-form" action="/result" method="POST">
+          
+          <div class="form-section">
+            <h3>Academic Performance</h3>
+            <div class="input-grid">
+              <div class="input-group">
+                <label for="ssc">SSC Marks (%)</label>
+                <input type="number" id="ssc" name="ssc" placeholder="e.g. 86.45" step="0.01" min="0" max="100" required>
+              </div>
+              <div class="input-group">
+                <label for="hsc">HSC Marks (%)</label>
+                <input type="number" id="hsc" name="hsc" placeholder="e.g. 86.43" step="0.01" min="0" max="100" required>
+              </div>
+              <div class="input-group">
+                <label for="cgpa">CGPA (out of 10)</label>
+                <input type="number" id="cgpa" name="cgpa" placeholder="e.g. 8.4" step="0.01" min="0" max="10" required>
+              </div>
+              <div class="input-group">
+                <label for="aptitude_score">Aptitude Score (%)</label>
+                <input type="number" id="aptitude_score" name="aptitude_score" placeholder="e.g. 64.8" step="0.1" min="0" max="100" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Experience & Skills</h3>
+            <div class="input-grid">
+              <div class="input-group">
+                <label for="project_count">Project Count</label>
+                <input type="number" id="project_count" name="project_count" placeholder="e.g. 2" step="1" min="0" required>
+              </div>
+              <div class="input-group">
+                <label for="internship_count">Internship Count</label>
+                <input type="number" id="internship_count" name="internship_count" placeholder="e.g. 1" step="1" min="0" required>
+              </div>
+              <div class="input-group">
+                <label for="workshop_attended">Workshops Attended</label>
+                <input type="number" id="workshop_attended" name="workshop_attended" placeholder="e.g. 3" step="1" min="0" required>
+              </div>
+              <div class="input-group">
+                <label for="SoftSkillsRating">Soft Skills Rating (0-5)</label>
+                <input type="number" id="SoftSkillsRating" name="SoftSkillsRating" placeholder="e.g. 4.5" step="0.1" min="0" max="5" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Extracurriculars</h3>
+            <div class="input-grid">
+              <div class="input-group">
+                <label for="EActivities">Extracurricular Activities</label>
+                <select name="EActivities" id="EActivities" required>
+                  <option value="" disabled selected>Select an option</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="PTraining">Placement Training</label>
+                <select name="PTraining" id="PTraining" required>
+                  <option value="" disabled selected>Select an option</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('prediction-form').reset()">Clear</button>
+            <button type="submit" class="btn btn-primary">Run Prediction</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div>
-        <label for="aptitude_score">Aptitude Test Score :</label>
-        <input type="number" id="aptitude_score" name="aptitude_score" placeholder="(out of 100 e.g. 64.8)" step="0.1" min="0" max="100" required>
-    </div>
-    <div>
-        <label for="workshop_attended">Workshop Attended :</label>
-        <input type="number" id="workshop_attended" name="workshop_attended" placeholder="e.g. 1,2.." step="1" min="0" required>
-    </div>
-    <div> Involved in Extracurricular Activities? :
-        <select name="EActivities" id="EActivities" required>
-            <option value=""></option>
-            <option value="1">YES</option>
-            <option value="0">NO</option>
-        </select>
-    </div>
-    <div> Taken Placement Training? :
-        <select name="PTraining" id="PTraining" required>
-            <option value=""></option>
-            <option value="1">YES</option>
-            <option value="0">NO</option>
-        </select>
-    </div>
-    <br>
-    <div id="container">
-        <button type="submit" id="submitbutton" class="btn btn-primary btn-block btn-large">Predict</button>
-    </div>
+  </div>
+
+  <script>
+    // Initialize Chart.js with data passed from Flask
+    const ctx = document.getElementById('featureChart').getContext('2d');
     
-    <button type="button" id="clearButton" class="fixed-button" onclick="clearInputs()">Clear Inputs</button>
- </div>
- 
-</form>
+    // Sort data for better visualization
+    const rawLabels = {{ feature_names | tojson | safe }};
+    const rawData = {{ importances | tojson | safe }};
+    
+    const combined = rawLabels.map((label, i) => ({ label, value: rawData[i] }));
+    combined.sort((a, b) => b.value - a.value);
+    
+    const sortedLabels = combined.map(item => item.label);
+    const sortedData = combined.map(item => item.value);
 
-
-<script type="text/javascript" src="{{url_for('static', filename='script1.js')}}"></script>
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: sortedLabels,
+        datasets: [{
+          label: 'Feature Importance',
+          data: sortedData,
+          backgroundColor: '#4f46e5',
+          borderRadius: 4,
+        }]
+      },
+      options: {
+        indexAxis: 'y', // Horizontal bar chart
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Relative Importance Score'
+            }
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
